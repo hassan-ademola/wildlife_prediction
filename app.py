@@ -5,9 +5,6 @@ from tensorflow import keras
 from tensorflow.keras.preprocessing import image
 import streamlit as st
 from PIL import Image
-import tensorflow
-import PIL
-
 
 st.set_page_config(page_title='African Wildlife', page_icon='favicon.png')
 st.title('African Wildlife Animal Classifier')
@@ -28,14 +25,10 @@ def predict(img):
     proba = model.predict(expanded)
     return ['Buffalo','Elephant','Rhino','Zebra'][proba.argmax()]
 
-def main():
-    if st.button('Predict'):
-        if image_file is not None:
-            img = load_image(image_file)
-            st.image(img,width=256)
-            with st.spinner('Predicting...'):
-                prediction = predict(img)  
-                st.success(prediction)
-
-if __name__ == '__main__':
-    main()
+if st.button('Predict'):
+    if image_file is not None:
+        img = load_image(image_file)
+        st.image(img,width=256)
+        with st.spinner('Predicting...'):
+            prediction = predict(img)  
+            st.success(prediction)
